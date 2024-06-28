@@ -1,0 +1,33 @@
+01-Brown Sugar Pearl Super Sundae-25
+02-Strawberry Jelly Milk-22
+03-Kiwi Oolong Tea-20
+04-Peach Oolong Tea-22
+05-Brown Sugar Pearl Milk Tea-25
+06-Kiwi Kiwi Jelly Milk-22
+07-FreshSqueezed Lemonade-15
+08-Strawberry Super Sundae-25
+09-MIXUE IceCream-10
+10-Mango Super Sundae-25
+11-Chocolate Super Sundae-25
+12-Raspberry Super Sundae-25
+13-Peach Milk Shake-25
+14-Aloe Super Sundae-25
+15-Strawberry Milk Shake-25
+16-Raspberry Milk Shake-25
+17-Raspberry Tea-22
+18-Creamy Mango Boba-30
+19-Aloe Lemon Tea-17
+20-Original Earl Grey Tea-15
+21-Peach Bigsize Tea-22
+22-Lemon Earl Grey Tea-15
+23-Four seasons Peach Tea-20
+24-Original Oolong Tea-15
+25-King Milk Tea-30
+26-Roosted Pearl Milk Tea-25
+27-Milk Tea with 3 Toppings-25
+28-Coconut Jelly Milk Tea-25
+29-Milk Tea with 2 Toppings-25
+30-Pearl Milk Tea-25
+31-IceCream Raspberry Tea-25
+32-IceCream Black Tea-25
+33-IceCream Oolong Tea-25
