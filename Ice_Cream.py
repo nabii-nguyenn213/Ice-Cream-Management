@@ -68,27 +68,72 @@ class Management:
         self.root = self.add_ice_cream(icecream, self.root)
     
     def get_balance(self, root : Node):
-        return self.height(root.left) - self.height(root.right)
+        return self.update_height(root.left) - self.update_height(root.right)
     
     def rotate_left(self, root : Node):
         temp = root.right
         root.right = temp.left
         temp.left = root
+        
         return temp
     
     def rotate_right(self, root : Node):
         temp = root.left
         root.left = temp.right
         temp.right = root
+        
         return temp
     
-    def height(self, root : Node):
+    def update_height(self, root : Node):
         if root is None:
             return -1
-        return max(self.height(root.left), self.height(root.right)) + 1
+        return max(self.update_height(root.left), self.update_height(root.right)) + 1
     
-    def delete_ice_cream(self, ice_cream : IceCream):
-        pass
+    def rebalance(self, node):
+        self.update_height(node)
+        balance = self.get_balance(node)
+        
+        if balance > 1 and self.get_balance(node.left) >= 0:
+            return self.rotate_right(node)
+        
+        if balance > 1 and self.get_balance(node.left) < 0:
+            node.left = self.rotate_left(node.left)
+            return self.rotate_right(node)
+        
+        if balance < -1 and self.get_balance(node.right) <= 0:
+            return self.rotate_left(node)
+
+        if balance < 1 and self.get_balance(node.right) > 0:
+            node.right = self.rotate_right(node.right)
+            return self.rotate_left(node)
+        
+        return node
+        
+    
+    def min_value_node(self, node):
+        cur = node
+        while cur.left:
+            cur = cur.left
+        return cur
+    
+    def delete_ice_cream(self, root : Node, id):
+        if not root:
+            return root
+        
+        if id < int(root.data.id):
+            root.left = self.delete_ice_cream(root.left, id)
+        elif id > int(root.data.id):
+            root.right = self.delete_ice_cream(root.right, id)
+        else:
+            if not root.left:
+                return root.right
+            elif not root.right:
+                return root.left
+            
+            temp = self.min_value_node(root.right)
+            root.data = temp.data
+            root.right = self.delete_ice_cream(root.right, int(temp.data.id))
+        return self.rebalance(root)
     
     def find(self, id : int):
         cur = self.root
@@ -139,8 +184,3 @@ class Management:
                 q.put(current.left)
             if current.right:
                 q.put(current.right)
-
-if __name__ == "__main__":
-    management = Management()
-    management.show_menu()
-    management.bfs()
