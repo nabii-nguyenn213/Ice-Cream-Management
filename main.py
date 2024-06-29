@@ -33,7 +33,7 @@ def main():
     option = choose_menu()
     if option == 1:
         employee_option = employee_menu()
-        management = Management()
+        management = Ice_Cream_Management()
         if employee_option == 1:
             management.show_menu()
         elif employee_option == 2:
