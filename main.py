@@ -39,7 +39,11 @@ def main():
         elif employee_option == 2:
             management.add_new_ice_cream()
         elif employee_option == 3:
-            pass
+            management.show_menu()
+            ice_cream_id = int(input("Please enter ice-cream id you want to delete: "))
+            if management.find(ice_cream_id):
+                management.root = management.delete_ice_cream(management.root, ice_cream_id)
+            management.bfs()
         elif employee_option == 4:
             management.modify_ice_cream()
         elif employee_option == 5:
