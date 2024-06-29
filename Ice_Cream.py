@@ -2,12 +2,10 @@ from List_Of_IceCream import *
 from queue import Queue
 
 class IceCream:
-    def __init__(self,id,  name, price, quantity = 1, topping = None):
+    def __init__(self,id,  name, price):
         self.id = id
         self.name = name
         self.price = price
-        self.quantity = quantity
-        self.topping = topping
 
 class Node:
     
@@ -16,7 +14,7 @@ class Node:
         self.left = None
         self.right = None
 
-class Management:
+class Ice_Cream_Management:
     def __init__(self):
         self.root = None
         list_ice_cream = read_file()
@@ -62,6 +60,9 @@ class Management:
     
     def add_new_ice_cream(self):
         new_icecream_id = input("Please enter ice-cream id: ")
+        if self.find(int(new_icecream_id)):
+            print("ID is already existed")
+            return
         new_icecream_name = input("Please enter ice-cream name: ")
         new_icecream_price = input("Please enter ice-cream price: ")
         icecream = IceCream(new_icecream_id, new_icecream_name, new_icecream_price)
@@ -138,7 +139,7 @@ class Management:
     def find(self, id : int):
         cur = self.root
         while cur and int(cur.data.id) != id:
-            if int(cur.data.id)  < id:
+            if int(cur.data.id) < id:
                 cur = cur.right
             elif int(cur.data.id) > id:
                 cur = cur.left
