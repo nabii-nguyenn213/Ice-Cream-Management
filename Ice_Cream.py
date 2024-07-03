@@ -1,5 +1,7 @@
 from List_Of_IceCream import *
 from queue import Queue
+import os
+
 
 class IceCream:
     def __init__(self,id,  name, price):
@@ -67,6 +69,11 @@ class Ice_Cream_Management:
         new_icecream_price = input("Please enter ice-cream price: ")
         icecream = IceCream(new_icecream_id, new_icecream_name, new_icecream_price)
         self.root = self.add_ice_cream(icecream, self.root)
+
+        # Thêm kem vào tệp txt
+        file = open('icecream.txt', 'a')
+        file.write(f"\n{new_icecream_id}-{new_icecream_name}-{new_icecream_price}")
+        file.close()
     
     def get_balance(self, root : Node):
         return self.update_height(root.left) - self.update_height(root.right)
@@ -134,7 +141,33 @@ class Ice_Cream_Management:
             temp = self.min_value_node(root.right)
             root.data = temp.data
             root.right = self.delete_ice_cream(root.right, int(temp.data.id))
+        # Xóa kem trong tệp txt và sửa id
+            # Đọc dữ liệu từ file
+            with open('icecream.txt', 'r') as file:
+                lines = file.readlines()
+
+            # Xóa dòng có id cần xóa
+            lines = [line for line in lines if not line.startswith(f'{id}')]
+
+
+            updated_lines = []
+            for i, line in enumerate(lines):
+                new_id = str(i + 1).zfill(2)
+                updated_line = f"{new_id}-{line.split('-', 1)[1]}"
+                updated_lines.append(updated_line)
+            
+            os.remove("icecream.txt")
+
+            # Ghi dữ liệu đã xử lý vào file mới
+            with open('icecream.txt', 'w') as file:
+                file.writelines(updated_lines)
+
+            file.close()
+            
         return self.rebalance(root)
+    
+        
+
     
     def find(self, id : int):
         cur = self.root
@@ -164,6 +197,26 @@ class Ice_Cream_Management:
             change = input("Do you want to modify (y/n)? ")
             if change == 'y' or change == "Y":
                 ice_cream.data.price = input("Please enter a new price: ")
+        
+        #Modify kem vào txt
+        with open('icecream.txt', 'r') as file:
+            lines = file.readlines()
+
+        # Cập nhật tên và giá cho dòng có id cần sửa
+        updated_lines = []
+        for line in lines:
+            if line.startswith(f'{ice_cream_id}-'):
+                parts = line.strip().split('-')
+                updated_line = f"{parts[0]}-{ice_cream.data.name}-{ice_cream.data.price}\n"
+                updated_lines.append(updated_line)
+            else:
+                updated_lines.append(line)
+
+            # Ghi dữ liệu đã xử lý vào file mới
+        with open('icecream.txt', 'w') as file:
+            file.writelines(updated_lines)
+
+        file.close()
     
     def show_menu(self):
         print("+-----------------------Ice Cream Menu-----------------------+")
