@@ -59,8 +59,8 @@ def main():
                 elif employee_option == 3:
                     management.show_menu()
                     ice_cream_id = int(input("Please enter ice-cream id you want to delete: "))
-                    if management.find(ice_cream_id):
-                        management.root = management.delete_ice_cream(management.root, ice_cream_id)
+                    if management.tree.find(ice_cream_id):
+                        management.tree.root = management.tree.delete(management.tree.root, ice_cream_id, 'ice-cream')
                     print()
                     employee_option = employee_menu()
                     
