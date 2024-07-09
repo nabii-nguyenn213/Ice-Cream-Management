@@ -47,6 +47,8 @@ class Avl_Tree:
         return root
     
     def get_balance(self, root : Node):
+        if root is None:
+            return 0
         return self.update_height(root.left) - self.update_height(root.right)
     
     def rotate_right(self, root : Node):
@@ -92,7 +94,7 @@ class Avl_Tree:
         if balance < -1 and self.get_balance(node.right) <= 0:
             return self.rotate_left(node)
 
-        if balance < 1 and self.get_balance(node.right) > 0:
+        if balance < -1 and self.get_balance(node.right) > 0:
             node.right = self.rotate_right(node.right)
             return self.rotate_left(node)
         
@@ -119,14 +121,20 @@ class Avl_Tree:
         elif id > int(root.data.id):
             root.right = self.delete(root.right, id, type)
         else:
-            if not root.left:
-                return root.right
-            elif not root.right:
-                return root.left
+            if root.left is None and root.right is None:
+                root = None
+            elif root.left is not None and root.right is not None:
+                min_node = self.find_min(root.right)
+                root.id = min_node.id
+                root.right = self.delete(root.right, min_node.id, type)
+            else:
             
-            temp = self.min_value_node(root.right)
-            root.data = temp.data
-            root.right = self.delete(root.right, int(temp.data.id), type)
+                if root.left is not None:
+                    root =  root.left
+                else:
+                    root = root.right
+            
+            
             
             # Xóa kem trong tệp txt và sửa id
             # Đọc dữ liệu từ file 
