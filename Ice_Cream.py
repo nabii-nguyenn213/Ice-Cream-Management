@@ -3,15 +3,16 @@ from avl_tree import *
 
 
 class IceCream:
-    def __init__(self,id,  name, price):
+    def __init__(self,id, name, price):
         self.id = id
         self.name = name
         self.price = price
 
 class Ice_Cream_Management:
+    
     def __init__(self):
         self.tree = Avl_Tree()
-        list_ice_cream = read_file()
+        list_ice_cream = read_file_ice_cream()
         for i in list_ice_cream:
             icecream_id = i
             icecream_name = list_ice_cream[i][0]
@@ -28,7 +29,6 @@ class Ice_Cream_Management:
         new_icecream_price = input("Please enter ice-cream price: ")
         icecream = IceCream(new_icecream_id, new_icecream_name, new_icecream_price)
         self.tree.root = self.tree.add(icecream, self.tree.root)
-
         # Thêm kem vào tệp txt
         file = open('icecream.txt', 'a')
         file.write(f"\n{new_icecream_id}-{new_icecream_name}-{new_icecream_price}")
@@ -53,7 +53,7 @@ class Ice_Cream_Management:
         #Modify kem vào txt
         with open('icecream.txt', 'r') as file:
             lines = file.readlines()
-
+            
         # Cập nhật tên và giá cho dòng có id cần sửa
         updated_lines = []
         for line in lines:
@@ -63,7 +63,7 @@ class Ice_Cream_Management:
                 updated_lines.append(updated_line)
             else:
                 updated_lines.append(line)
-
+            
             # Ghi dữ liệu đã xử lý vào file mới
         with open('icecream.txt', 'w') as file:
             file.writelines(updated_lines)
@@ -74,7 +74,7 @@ class Ice_Cream_Management:
         print("+-----------------------Ice Cream Menu-----------------------+")
         print("|   ID   |                NAME                 |    PRICE    |")
         print("+------------------------------------------------------------+")
-        ice_cream = read_file()
+        ice_cream = read_file_ice_cream()
         for i in ice_cream:
             print(f"|   {i}   |  {ice_cream[i][0]}" + " " * (35-len(ice_cream[i][0])) + "|" + f"      {ice_cream[i][1]}     |")
         print("+------------------------------------------------------------+")

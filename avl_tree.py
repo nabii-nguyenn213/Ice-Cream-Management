@@ -1,5 +1,13 @@
 import os
 from queue import Queue
+from List_Of_Customer import read_file_customer
+from List_Of_IceCream import read_file_ice_cream
+
+class IceCream:
+    def __init__(self,id, name, price):
+        self.id = id
+        self.name = name
+        self.price = price
 
 class Node:
     
@@ -46,7 +54,7 @@ class Avl_Tree:
         
         return root
     
-    def get_balance(self, root : Node):
+    def get_balance(self, root):
         if root is None:
             return 0
         return self.update_height(root.left) - self.update_height(root.right)
@@ -124,9 +132,9 @@ class Avl_Tree:
             if root.left is None and root.right is None:
                 root = None
             elif root.left is not None and root.right is not None:
-                min_node = self.find_min(root.right)
-                root.id = min_node.id
-                root.right = self.delete(root.right, min_node.id, type)
+                min_node = self.min_value_node(root.right)
+                root.data = min_node.data
+                #root.right = self.delete(root.right, int(min_node.data.id), type)
             else:
             
                 if root.left is not None:
@@ -166,6 +174,19 @@ class Avl_Tree:
             file.close()
             
         return self.rebalance(root)
+    
+    def clear(self):
+        self.root = None
+    
+    def update(self):
+        
+        list_ice_cream = read_file_ice_cream()
+        for i in list_ice_cream:
+            icecream_id = i
+            icecream_name = list_ice_cream[i][0]
+            icecream_price = list_ice_cream[i][1]
+            icecream = IceCream(icecream_id, icecream_name, icecream_price)
+            self.root = self.add(icecream, self.root)
     
     def bfs(self):
         q = Queue()

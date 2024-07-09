@@ -1,4 +1,4 @@
-def read_file():
+def read_file_ice_cream():
     file = open('icecream.txt', 'r')
     list_of_ice_cream = {}
     for line in file:

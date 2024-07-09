@@ -1,4 +1,4 @@
-def read_file():
+def read_file_customer():
     file = open('customer_information.txt', 'r')
     d = {}
     for line in file:

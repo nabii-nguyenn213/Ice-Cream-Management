@@ -1,5 +1,5 @@
 from Ice_Cream import *
-from List_Of_Customer import read_file
+from List_Of_Customer import read_file_customer
 from avl_tree import *
 
 class Customer:
@@ -12,7 +12,7 @@ class Customer_Management:
     
     def __init__(self):
         self.tree = Avl_Tree()
-        list_customer = read_file()
+        list_customer = read_file_customer()
         for i in list_customer:
             cus_id = i
             cus_cart = list_customer[i]
