@@ -54,6 +54,8 @@ def main():
                 elif employee_option == 2:
                     management.add_new_ice_cream()
                     print()
+                    print(management.tree.bfs())
+                    
                     employee_option = employee_menu()
                     
                 elif employee_option == 3:
@@ -62,6 +64,9 @@ def main():
                     if management.tree.find(ice_cream_id):
                         management.tree.root = management.tree.delete(management.tree.root, ice_cream_id, 'ice-cream')
                     print()
+                    print(management.tree.bfs())
+                    
+                    
                     employee_option = employee_menu()
                     
                 elif employee_option == 4:

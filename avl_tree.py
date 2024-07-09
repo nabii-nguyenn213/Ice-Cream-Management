@@ -1,4 +1,5 @@
 import os
+from queue import Queue
 
 class Node:
     
@@ -12,16 +13,14 @@ class Avl_Tree:
     def __init__(self):
         self.root = None
     
-    def add(self, element, root : Node):
-        if root is None:
+    def add(self, element, root):
+        if root == None:
             root = Node(element)
         else:
             if int(root.data.id) > int(element.id):
                 root.left = self.add(element, root.left)
-            
             elif int(root.data.id) < int(element.id):
                 root.right = self.add(element, root.right)
-            
             else:
                 return root
         
@@ -62,7 +61,7 @@ class Avl_Tree:
         temp.left = root
         return temp
     
-    def update_height(self, root : Node):
+    def update_height(self, root):
         if root is None:
             return -1
         return max(self.update_height(root.left), self.update_height(root.right)) + 1
@@ -111,7 +110,7 @@ class Avl_Tree:
         else:
             return 
     
-    def delete(self, root : Node, id, type):
+    def delete(self, root, id, type):
         if not root:
             return root
         
@@ -159,3 +158,15 @@ class Avl_Tree:
             file.close()
             
         return self.rebalance(root)
+    
+    def bfs(self):
+        q = Queue()
+        q.put(self.root)
+        while not q.empty():
+            current = q.get()
+            print(current.data.id, end = " ")
+            if current.left:
+                q.put(current.left)
+            if current.right:
+                q.put(current.right)
+        print()
