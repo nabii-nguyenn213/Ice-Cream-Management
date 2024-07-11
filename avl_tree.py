@@ -2,12 +2,20 @@ import os
 from queue import Queue
 from List_Of_Customer import read_file_customer
 from List_Of_IceCream import read_file_ice_cream
+from List_Of_Employ import read_file_employ
 
 class IceCream:
     def __init__(self,id, name, price):
         self.id = id
         self.name = name
         self.price = price
+
+class Employee:
+    
+    def __init__(self, id, name, position):
+        self.id = id
+        self.name = name
+        self.position = position
 
 class Node:
     
@@ -178,15 +186,23 @@ class Avl_Tree:
     def clear(self):
         self.root = None
     
-    def update(self):
-        
-        list_ice_cream = read_file_ice_cream()
-        for i in list_ice_cream:
-            icecream_id = i
-            icecream_name = list_ice_cream[i][0]
-            icecream_price = list_ice_cream[i][1]
-            icecream = IceCream(icecream_id, icecream_name, icecream_price)
-            self.root = self.add(icecream, self.root)
+    def update(self, type):
+        if type == 'ice-cream':
+            list_ice_cream = read_file_ice_cream()
+            for i in list_ice_cream:
+                icecream_id = i
+                icecream_name = list_ice_cream[i][0]
+                icecream_price = list_ice_cream[i][1]
+                icecream = IceCream(icecream_id, icecream_name, icecream_price)
+                self.root = self.add(icecream, self.root)
+        if type == 'employee':
+            list_employ = read_file_employ()
+            for i in list_employ:
+                employ_id = i
+                employ__name = list_employ[i][0]
+                employ_position = list_employ[i][1]
+                employ = Employee(employ_id, employ__name, employ_position)
+                self.root = self.add(employ, self.root)
     
     def bfs(self):
         q = Queue()

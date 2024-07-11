@@ -41,14 +41,19 @@ class Ice_Cream_Management:
         ice_cream = self.tree.find(ice_cream_id)
         if ice_cream:
             print("Current Name:", ice_cream.data.name)
+            print()
             change = input("Do you want to modify (y/n)? ")
+            print()
             if change == 'y' or change == "Y":
                 ice_cream.data.name = input("Please enter a new name: ")
             
             print("Current Price:", ice_cream.data.price)
+            print()
             change = input("Do you want to modify (y/n)? ")
             if change == 'y' or change == "Y":
                 ice_cream.data.price = input("Please enter a new price: ")
+                print()
+        
         
         #Modify kem vào txt
         with open('icecream.txt', 'r') as file:
@@ -67,7 +72,6 @@ class Ice_Cream_Management:
             # Ghi dữ liệu đã xử lý vào file mới
         with open('icecream.txt', 'w') as file:
             file.writelines(updated_lines)
-
         file.close()
     
     def show_menu(self):

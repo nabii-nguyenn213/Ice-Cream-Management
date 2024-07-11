@@ -38,6 +38,29 @@ class Customer_Management:
                 print(f"|  {i[0]}" + " " * (35 - len(i[0])) + "|" + f"     {i[1]}      " + "|" + f"      {i[2]}" + " "*(7 - len(str(i[2]))) +"|")
             print("+-----------------------------------------------------------------+")
     
+    def total(self, id):
+        cus = self.tree.find(int(id))
+        cash = 0
+        if cus:
+            for i in cus.data.cart:
+                cash += int(i[1]) * int(i[2])
+        return cash
+            
+    def generate_invoice(self, id):
+        cus = self.tree.find(int(id))
+        if cus:
+            cash = self.total(int(id))
+            print("+--------------------------MIXUE ICE-CREAM------------------------+")
+            print("|                                                                 |")
+            print("+-----------------------------------------------------------------+")
+            print("|                NAME                 |    PRICE    |   QUANTITY  |")
+            print("+-----------------------------------------------------------------+")
+            for i in cus.data.cart:
+                print(f"|  {i[0]}" + " " * (35 - len(i[0])) + "|" + f"     {i[1]}      " + "|" + f"      {i[2]}" + " "*(7 - len(str(i[2]))) +"|")
+            print("+-----------------------------------------------------------------+")
+            print(f"|                                           Total:  {cash} " + " " * (13-len(str(cash))) + "|")
+            print("+-----------------------------------------------------------------+")
+    
     def order(self):
         i = Ice_Cream_Management()
         menu = i.show_menu()
