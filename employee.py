@@ -37,50 +37,6 @@ class Employee_Management:
         file.write(f"\n{new_employ_id}-{new_employ_name}-{new_employ_position}")
         file.close()
         
-    '''
-    def modify_employ(self):
-        self.show_employ()
-        print()
-        employ_id = int(input("Please enter employee id you want to modify: "))
-        print()
-        employ = self.tree.find(employ_id)
-        if employ:
-            print("Current Name:", employ.data.name)
-            print()
-            change = input("Do you want to modify (y/n)? ")
-            print()
-            if change == 'y' or change == "Y":
-                employ.data.name = input("Please enter a new name: ")
-            
-            print("Current Position:", employ.data.position)
-            print()
-            change = input("Do you want to modify (y/n)? ")
-            if change == 'y' or change == "Y":
-                employ.data.position = input("Please enter a new position: ")
-                print()
-        
-        #print("After change:", employ.data.id, employ.data.name, employ.data.position)
-        
-        #Modify employ vào txt
-        with open('employee_information.txt', 'r') as file:
-            lines = file.readlines()
-        
-        # Cập nhật tên và giá cho dòng có id cần sửa
-        updated_lines = []
-        for line in lines:
-            if line.startswith(f'{employ_id}-'):
-                parts = line.strip().split('-')
-                updated_line = f"{parts[0]}-{employ.data.name}-{employ.data.position}\n"
-                updated_lines.append(updated_line)
-            else:
-                updated_lines.append(line)
-            
-            # Ghi dữ liệu đã xử lý vào file mới
-        with open('employee_information.txt', 'w') as file:
-            file.writelines(updated_lines)
-        file.close()
-    '''
-    
     def modify_employ(self):
         self.show_employ()
         print()

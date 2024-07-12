@@ -162,15 +162,17 @@ class Avl_Tree:
 
             with open(file_path, 'r') as file:
                 lines = file.readlines()
-
+            if id < 10:
+                id = '0' + str(id)
             # Xóa dòng có id cần xóa
             lines = [line for line in lines if not line.startswith(f'{id}')]
-
+            print('lines:', lines)
 
             updated_lines = []
             for i, line in enumerate(lines):
                 new_id = str(i + 1).zfill(2)
                 updated_line = f"{new_id}-{line.split('-', 1)[1]}"
+                print("update line: ", updated_line)
                 updated_lines.append(updated_line)
             
             os.remove(file_path)
