@@ -158,7 +158,7 @@ class Avl_Tree:
             if type == "ice-cream":
                 file_path = 'icecream.txt'
             elif type == 'employee':
-                file_path = 'Employee.txt'
+                file_path = 'employee_information.txt'
 
             with open(file_path, 'r') as file:
                 lines = file.readlines()

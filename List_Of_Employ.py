@@ -1,5 +1,5 @@
 def read_file_employ():
-    file = open('Employee.txt', 'r')
+    file = open('employee_information.txt', 'r')
     list_of_employ = {}
     for line in file:
         l = line.split("-")
