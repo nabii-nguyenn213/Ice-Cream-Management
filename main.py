@@ -122,16 +122,21 @@ def main():
                     employee_option = employee_menu()
                     print()
                 elif employee_option == 9:
-                    pass
+                    # employee.show_invoice()
+                    
+                    # print()
+                    
+                    employee_option = employee_menu()
             else:
                 option = choose_menu()
         elif option == 2:
             customer_option = customer_menu()
             customer = Customer_Management()
             customer_id = customer.generate_id()
+            customer.insert_new_customer(customer_id)
             while customer_option != 0:
                 if customer_option == 1:
-                    customer.insert_new_customer(customer_id)
+                    customer.order(customer_id)
                     print()
                     customer_option = customer_menu()    
                     print()
@@ -143,8 +148,8 @@ def main():
                 elif customer_option == 3:
                     customer.generate_invoice(customer_id)
                     print()
-                    customer_option - customer_menu()
-                    print()
+                    customer.update_customer_txt(customer_id)
+                    customer_option = 0
             else:
                 option = choose_menu()
             

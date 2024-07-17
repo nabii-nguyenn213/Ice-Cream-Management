@@ -1,6 +1,8 @@
 from avl_tree import *
 from List_Of_Employ import read_file_employ
+from List_Of_Customer import read_file_customer
 from Ice_Cream import *
+from Customers import *
 
 class Employee:
     
@@ -89,6 +91,22 @@ class Employee_Management:
                 print("Employee information updated successfully.")
         else:
             print("Employee not found.")
+    
+    def show_invoice(self):
+        # list_customer = read_file_customer()
+        # id_customer = []
+        # for line in list_customer:
+        #     id = line[:7]
+        #     id_customer.append(id)
+        # print("+----------ID CUSTOMER----------+")
+        # for i in id_customer:
+        #     print(f"|             {i}           |")
+        # print("+-------------------------------+")
+        
+        # op = input("Please choose customer id you want to see invoice:  ")
+        # cus = Customer_Management()
+        # cus.generate_invoice(op)
+        pass
     
     def show_employ(self):
         print("+-----------------------MIXUE EMPLOYEE-----------------------+")

@@ -4,8 +4,8 @@ from avl_tree import *
 
 class Customer:
     
-    def __init__(self, id, cart):
-        self.cart = cart
+    def __init__(self, id, card = []):
+        self.cart = card
         self.id = id
 
 class Customer_Management:
@@ -23,10 +23,19 @@ class Customer_Management:
         return '0'*(7-len(str(int(self.tree.max_value(self.tree.root).data.id) + 1))) + str(int(self.tree.max_value(self.tree.root).data.id) + 1)
     
     def insert_new_customer(self, id):
-        new_cart = self.order()
         new_id = id
-        new_cus = Customer(new_id, new_cart)
+        new_cus = Customer(new_id)
         self.tree.root = self.tree.add(new_cus, self.tree.root)
+    
+    def update_customer_txt(self, id):
+        #cap nhat cart cho customer o file txt
+        cus = self.tree.find(int(id))
+        new_cart = cus.data.cart
+        
+        file = open('customer_information.txt', 'a')
+        file.write(f"\n{id}-{new_cart}")
+        file.close()
+        
     
     def show_cart(self, id):
         cus = self.tree.find(int(id))
@@ -52,6 +61,8 @@ class Customer_Management:
             cash = self.total(int(id))
             print("+--------------------------MIXUE ICE-CREAM------------------------+")
             print("|                                                                 |")
+            print(f"|                            ID: {id}                          |")
+            print("|                                                                 |")
             print("+-----------------------------------------------------------------+")
             print("|                NAME                 |    PRICE    |   QUANTITY  |")
             print("+-----------------------------------------------------------------+")
@@ -60,22 +71,35 @@ class Customer_Management:
             print("+-----------------------------------------------------------------+")
             print(f"|                                           Total:  {cash} " + " " * (13-len(str(cash))) + "|")
             print("+-----------------------------------------------------------------+")
+        else:
+            print("Id customer not found!!!")
     
-    def order(self):
+    def order(self, id):
         i = Ice_Cream_Management()
         menu = i.show_menu()
-        cart = []
         o = 'y'
+        cus = self.tree.find(int(id))
         while o == 'y' or o == 'Y':
-            order_id = int(input("Please choose your ice-cream/drink you want by id: "))
-            print()
-            ice_cream = i.tree.find(order_id)
-            quantity = int(input("How many do you want: "))
-            print()
-            cart.append([ice_cream.data.name, ice_cream.data.price, quantity])
+            sub_cart = self.add_to_cart()
+            cus.data.cart.append(sub_cart)
+            
             #[NAME, PRICE, QUANTITY]
-            print(f"{ice_cream.data.name} was added to your cart.")
             print()
             o = input("Continue to order(y/n)? ")
             print()
-        return cart
+    
+    def add_to_cart(self):
+        i = Ice_Cream_Management()
+        sub_cart = []
+        order_id = int(input("Please choose your ice-cream/drink you want by id: "))
+        print()
+        ice_cream = i.tree.find(order_id)
+        quantity = int(input("How many do you want: "))
+        print()
+        sub_cart.append(ice_cream.data.name)
+        sub_cart.append(ice_cream.data.price)
+        sub_cart.append(quantity)
+        
+        #[NAME, PRICE, QUANTITY]
+        print(f"{ice_cream.data.name} was added to your cart.")
+        return sub_cart
