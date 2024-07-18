@@ -78,7 +78,6 @@ def main():
                     else:
                         if management.tree.find(int(ice_cream_id)):
                             management.tree.root = management.tree.delete(management.tree.root, int(ice_cream_id), 'ice-cream')
-                            management.tree.update('ice-cream')
                             print()
                             print("Ice-cream was deleted successfully!!!")
                             print()
@@ -122,7 +121,6 @@ def main():
                     else:
                         if employee.tree.find(int(employ_id)):
                             employee.tree.root = employee.tree.delete(employee.tree.root, int(employ_id), 'employee')
-                            management.tree.update('employee')
                         else:
                             print("Employee id not found!!!")
                         print()
@@ -136,9 +134,9 @@ def main():
                     employee_option = employee_menu()
                     print()
                 elif employee_option == 9:
-                    # employee.show_invoice()
+                    employee.show_invoice()
                     
-                    # print()
+                    print()
                     
                     employee_option = employee_menu()
             else:

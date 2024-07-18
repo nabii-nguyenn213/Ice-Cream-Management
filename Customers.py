@@ -31,9 +31,18 @@ class Customer_Management:
         #cap nhat cart cho customer o file txt
         cus = self.tree.find(int(id))
         new_cart = cus.data.cart
-        
+        line = ""
+        for i in new_cart:
+            for j in i:
+                if type(j) != int:
+                    line += j + ', '
+                else:
+                    line += str(j)
+                
+            line += '-'
+        line = line[:-1]
         file = open('customer_information.txt', 'a')
-        file.write(f"\n{id}-{new_cart}")
+        file.write(f"\n{id}-{line}")
         file.close()
         
     
@@ -58,10 +67,13 @@ class Customer_Management:
     def generate_invoice(self, id):
         cus = self.tree.find(int(id))
         if cus:
+            
+            
             cash = self.total(int(id))
+            
             print("+--------------------------MIXUE ICE-CREAM------------------------+")
             print("|                                                                 |")
-            print(f"|                            ID: {id}                          |")
+            print(f"|                            ID: {cus.data.id}                          |")
             print("|                                                                 |")
             print("+-----------------------------------------------------------------+")
             print("|                NAME                 |    PRICE    |   QUANTITY  |")
@@ -73,6 +85,7 @@ class Customer_Management:
             print("+-----------------------------------------------------------------+")
         else:
             print("Id customer not found!!!")
+            
     
     def order(self, id):
         i = Ice_Cream_Management()

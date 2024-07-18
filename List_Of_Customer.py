@@ -3,5 +3,12 @@ def read_file_customer():
     d = {}
     for line in file:
         l = line.split("-")
-        d[l[0]] = l[1] # {id : cart}
+        cart = []
+        for i in range(1, len(l)):
+            l[i] = l[i].replace('\n', '')
+            sl = l[i].split(", ")
+            
+            cart.append(sl)
+            
+        d[l[0]] = cart # {id : cart}
     return d
