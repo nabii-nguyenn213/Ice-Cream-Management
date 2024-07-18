@@ -166,13 +166,6 @@ class Avl_Tree:
                 id = '0' + str(id)
             # Xóa dòng có id cần xóa
             lines = [line for line in lines if not line.startswith(f'{id}')]
-
-            # updated_lines = []
-            # for i, line in enumerate(lines):
-            #     new_id = str(i + 1).zfill(2)
-            #     updated_line = f"{new_id}-{line.split('-', 1)[1]}"
-            #     print("update line: ", updated_line)
-            #     updated_lines.append(updated_line)
             
             os.remove(file_path)
             lines[-1] = lines[-1].replace('\n', '')
@@ -182,15 +175,3 @@ class Avl_Tree:
             file.close()
             
         return self.rebalance(root)
-    
-    def bfs(self):
-        q = Queue()
-        q.put(self.root)
-        while not q.empty():
-            current = q.get()
-            print("(", current.data.id, current.data.name, current.data.price, ")", end = " ")
-            if current.left:
-                q.put(current.left)
-            if current.right:
-                q.put(current.right)
-        print()
