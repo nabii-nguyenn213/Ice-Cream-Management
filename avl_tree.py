@@ -152,10 +152,6 @@ class Avl_Tree:
                 else:
                     root = root.right
             
-            '''
-            sua 
-            '''
-            
             # Xóa kem trong tệp txt và sửa id
             # Đọc dữ liệu từ file 
             
@@ -170,21 +166,19 @@ class Avl_Tree:
                 id = '0' + str(id)
             # Xóa dòng có id cần xóa
             lines = [line for line in lines if not line.startswith(f'{id}')]
-            print('lines:', lines)
 
-            updated_lines = []
-            for i, line in enumerate(lines):
-                new_id = str(i + 1).zfill(2)
-                updated_line = f"{new_id}-{line.split('-', 1)[1]}"
-                print("update line: ", updated_line)
-                updated_lines.append(updated_line)
+            # updated_lines = []
+            # for i, line in enumerate(lines):
+            #     new_id = str(i + 1).zfill(2)
+            #     updated_line = f"{new_id}-{line.split('-', 1)[1]}"
+            #     print("update line: ", updated_line)
+            #     updated_lines.append(updated_line)
             
             os.remove(file_path)
-
+            lines[-1] = lines[-1].replace('\n', '')
             # Ghi dữ liệu đã xử lý vào file mới
             with open(file_path, 'w') as file:
-                file.writelines(updated_lines)
-
+                file.writelines(lines)
             file.close()
             
         return self.rebalance(root)

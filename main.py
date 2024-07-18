@@ -121,6 +121,11 @@ def main():
                     else:
                         if employee.tree.find(int(employ_id)):
                             employee.tree.root = employee.tree.delete(employee.tree.root, int(employ_id), 'employee')
+                            
+                            print()
+                            print("Employee delete successfully!!!")
+                            print()
+                            
                         else:
                             print("Employee id not found!!!")
                         print()
