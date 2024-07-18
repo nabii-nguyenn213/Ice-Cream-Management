@@ -18,12 +18,10 @@ class Employee:
         self.position = position
 
 class Node:
-    '''
-    them 1 pointer parent
-    '''
+    
     def __init__(self, data):
         self.data = data
-        # self.parent = None
+        self.parent = None
         self.left = None
         self.right = None
 
