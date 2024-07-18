@@ -189,27 +189,6 @@ class Avl_Tree:
             
         return self.rebalance(root)
     
-    def clear(self):
-        self.root = None
-    
-    def update(self, type):
-        if type == 'ice-cream':
-            list_ice_cream = read_file_ice_cream()
-            for i in list_ice_cream:
-                icecream_id = i
-                icecream_name = list_ice_cream[i][0]
-                icecream_price = list_ice_cream[i][1]
-                icecream = IceCream(icecream_id, icecream_name, icecream_price)
-                self.root = self.add(icecream, self.root)
-        if type == 'employee':
-            list_employ = read_file_employ()
-            for i in list_employ:
-                employ_id = i
-                employ__name = list_employ[i][0]
-                employ_position = list_employ[i][1]
-                employ = Employee(employ_id, employ__name, employ_position)
-                self.root = self.add(employ, self.root)
-    
     def bfs(self):
         q = Queue()
         q.put(self.root)

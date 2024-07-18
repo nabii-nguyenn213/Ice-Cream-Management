@@ -76,8 +76,8 @@ def main():
                         employee_option = employee_menu()
                         print()
                     else:
-                        if management.tree.find(ice_cream_id):
-                            management.tree.root = management.tree.delete(management.tree.root, ice_cream_id, 'ice-cream')
+                        if management.tree.find(int(ice_cream_id)):
+                            management.tree.root = management.tree.delete(management.tree.root, int(ice_cream_id), 'ice-cream')
                             management.tree.update('ice-cream')
                             print()
                             print("Ice-cream was deleted successfully!!!")
@@ -120,8 +120,8 @@ def main():
                         employee_option = employee_menu()
                         print()
                     else:
-                        if employee.tree.find(employ_id):
-                            employee.tree.root = employee.tree.delete(employee.tree.root, employ_id, 'employee')
+                        if employee.tree.find(int(employ_id)):
+                            employee.tree.root = employee.tree.delete(employee.tree.root, int(employ_id), 'employee')
                             management.tree.update('employee')
                         else:
                             print("Employee id not found!!!")

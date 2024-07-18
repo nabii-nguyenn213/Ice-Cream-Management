@@ -54,10 +54,7 @@ class Ice_Cream_Management:
         file.write(f"\n{new_icecream_id}-{new_icecream_name}-{new_icecream_price}")
         file.close()
         print("New ice-cream was added successfully!!!")
-    
-    '''
-    sua
-    '''
+
     
     def modify_ice_cream(self):
         self.show_menu()
