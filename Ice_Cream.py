@@ -20,8 +20,28 @@ class Ice_Cream_Management:
             icecream = IceCream(icecream_id, icecream_name, icecream_price)
             self.tree.root = self.tree.add(icecream, self.tree.root)
     
+    def check_valid_id(self, id):
+        if id == 'q' or id == 'Q':
+            return id
+        try:
+            if int(id) > 0:
+                return int(id)
+            else:
+                print("ID INVALID PLEASE ENTER AGAIN")
+                return
+        except:
+            print("ID INVALID PLEASE ENTER AGAIN")
+            return 
+    
     def add_new_ice_cream(self):
-        new_icecream_id = input("Please enter ice-cream id: ")
+        new_icecream_id = input("Please enter ice-cream id (press 'q' to quit): ")
+        
+        while self.check_valid_id(new_icecream_id) == None:
+            new_icecream_id = input("Please enter ice-cream id (press 'q' to quit): ")
+        
+        if new_icecream_id == 'q' or new_icecream_id == "Q":
+            return
+        
         if self.tree.find(int(new_icecream_id)):
             print("ID is already existed")
             return
@@ -33,26 +53,60 @@ class Ice_Cream_Management:
         file = open('icecream.txt', 'a')
         file.write(f"\n{new_icecream_id}-{new_icecream_name}-{new_icecream_price}")
         file.close()
+        print("New ice-cream was added successfully!!!")
+    
+    '''
+    sua
+    '''
     
     def modify_ice_cream(self):
         self.show_menu()
         print()
-        ice_cream_id = int(input("Please enter ice-cream id you want to modify: "))
-        ice_cream = self.tree.find(ice_cream_id)
+        ice_cream_id = input("Please enter ice-cream id you want to modify (press 'q' to quit):")
+        
+        while self.check_valid_id(ice_cream_id) == None:
+            ice_cream_id = input("Please enter ice-cream id you want to modify (press 'q' to quit): ")
+        
+        if ice_cream_id == 'q' or ice_cream_id == "Q":
+            return
+        
+        ice_cream = self.tree.find(int(ice_cream_id))
+        
         if ice_cream:
-            print("Current Name:", ice_cream.data.name)
-            print()
-            change = input("Do you want to modify (y/n)? ")
-            print()
-            if change == 'y' or change == "Y":
-                ice_cream.data.name = input("Please enter a new name: ")
+            m = input("Please enter what field you want to modify (name, price): ")
+            f = m.split(', ')
+            while f != ['name'] and f != ['price'] and f != ['name', 'price']:
+                m = input("Please enter what field you want to modify (name, price): ")
+                f = m.split(', ')
             
-            print("Current Price:", ice_cream.data.price)
+            if len(f) == 2:
+                change = input("Please enter new name or price (name, price): ")
+                c = change.split(', ')
+                while len(c) != 2:
+                    print("Please enter 2 argument!")
+                    change = input("Please enter new name or price (name, price): ")
+                    c = change.split(', ')
+                    
+                ice_cream.data.name = c[0]
+                ice_cream.data.price = c[1]
+            elif f == ['name']:
+                change = input("Please enter new name or price (name, price): ")
+                c = change.split(", ")
+                while len(c) != 1:
+                    print("Please enter 1 argument")
+                    change = input("Please enter new name or price (name, price): ")
+                    c = change.split(", ")
+                ice_cream.data.name = change
+            else:
+                change = input("Please enter new name or price (name, price): ")
+                c = change.split(", ")
+                while len(c) != 1:
+                    print("Please enter 1 argument")
+                    change = input("Please enter new name or price (name, price): ")
+                    c = change.split(", ")
+                ice_cream.data.price = change
             print()
-            change = input("Do you want to modify (y/n)? ")
-            if change == 'y' or change == "Y":
-                ice_cream.data.price = input("Please enter a new price: ")
-                print()
+            print("Ice-cream was modify successfully!!!")
         
         
         #Modify kem vào txt
@@ -73,6 +127,10 @@ class Ice_Cream_Management:
         with open('icecream.txt', 'w') as file:
             file.writelines(updated_lines)
         file.close()
+    
+    '''
+    tim kem theo ten
+    '''
     
     def show_menu(self):
         print("+-----------------------Ice Cream Menu-----------------------+")

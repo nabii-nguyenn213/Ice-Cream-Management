@@ -18,9 +18,12 @@ class Employee:
         self.position = position
 
 class Node:
-    
+    '''
+    them 1 pointer parent
+    '''
     def __init__(self, data):
         self.data = data
+        # self.parent = None
         self.left = None
         self.right = None
 
@@ -142,7 +145,6 @@ class Avl_Tree:
             elif root.left is not None and root.right is not None:
                 min_node = self.min_value_node(root.right)
                 root.data = min_node.data
-                #root.right = self.delete(root.right, int(min_node.data.id), type)
             else:
             
                 if root.left is not None:
@@ -150,7 +152,9 @@ class Avl_Tree:
                 else:
                     root = root.right
             
-            
+            '''
+            sua 
+            '''
             
             # Xóa kem trong tệp txt và sửa id
             # Đọc dữ liệu từ file 
@@ -211,7 +215,7 @@ class Avl_Tree:
         q.put(self.root)
         while not q.empty():
             current = q.get()
-            print(current.data.id, end = " ")
+            print("(", current.data.id, current.data.name, current.data.price, ")", end = " ")
             if current.left:
                 q.put(current.left)
             if current.right:

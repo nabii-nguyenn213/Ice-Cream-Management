@@ -57,37 +57,41 @@ def main():
                     
                     employee_option = employee_menu()
                     print()
+                    
                 elif employee_option == 2:
                     management.add_new_ice_cream()
-                    print()
-                    
-                    print("New ice-cream was added successfully!!!")
-                    
                     print()
                     
                     employee_option = employee_menu()
                     print()
                 elif employee_option == 3:
                     management.show_menu()
-                    ice_cream_id = int(input("Please enter ice-cream id you want to delete: "))
-                    if management.tree.find(ice_cream_id):
-                        management.tree.root = management.tree.delete(management.tree.root, ice_cream_id, 'ice-cream')
-                        management.tree.update('ice-cream')
+                    ice_cream_id = input("Please enter ice-cream id you want to delete (press 'q' to quit): ")
+                    
+                    while management.check_valid_id(ice_cream_id) == None:
+                        ice_cream_id = input("Please enter ice-cream id you want to delete (press 'q' to quit): ")
+                    
+                    if ice_cream_id == 'q' or ice_cream_id == 'Q':
                         print()
-                        print("Ice-cream was deleted successfully!!!")
+                        employee_option = employee_menu()
+                        print()
+                    else:
+                        if management.tree.find(ice_cream_id):
+                            management.tree.root = management.tree.delete(management.tree.root, ice_cream_id, 'ice-cream')
+                            management.tree.update('ice-cream')
+                            print()
+                            print("Ice-cream was deleted successfully!!!")
+                            print()
+                            
+                        else:
+                            print("Ice-cream id not found!!!")
                         print()
                         
-                    else:
-                        print("Ice-cream id not found!!!")
-                    print()
-                    
-                    
-                    employee_option = employee_menu()
-                    print()
+                        
+                        employee_option = employee_menu()
+                        print()
                 elif employee_option == 4:
                     management.modify_ice_cream()
-                    print()
-                    print("Ice-cream was changed successfully!!!")
                     
                     employee_option = employee_menu()
                     print()
@@ -105,15 +109,25 @@ def main():
                     print()
                 elif employee_option == 7:
                     employee.show_employ()
-                    employ_id = int(input("Please enter employee id you want to delete: "))
-                    if employee.tree.find(employ_id):
-                        employee.tree.root = employee.tree.delete(employee.tree.root, employ_id, 'employee')
-                        management.tree.update('employee')
-                    else:
-                        print("Employee id not found!!!")
-                    print()
+                    employ_id = input("Please enter employee id you want to delete (press 'q' to quit): ")
                     
-                    employee_option = employee_menu()
+                    while management.check_valid_id(employ_id) == None:
+                        
+                        employ_id = input("Please enter employee id you want to delete (press 'q' to quit): ")
+                        
+                    if employ_id == 'q' or employ_id == 'Q':
+                        print()
+                        employee_option = employee_menu()
+                        print()
+                    else:
+                        if employee.tree.find(employ_id):
+                            employee.tree.root = employee.tree.delete(employee.tree.root, employ_id, 'employee')
+                            management.tree.update('employee')
+                        else:
+                            print("Employee id not found!!!")
+                        print()
+                        
+                        employee_option = employee_menu()
                     
                 elif employee_option == 8:
                     employee.show_employ()

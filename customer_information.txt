@@ -2,3 +2,5 @@
 0000002-[['Kiwi Oolong Tea', '20', 2], ['Peach Oolong Tea', '22', 1]]
 0000003-[['Brown Sugar Pearl Super Sundae', '25', 1], ['Strawberry Jelly Milk', '22', 2]]
 0000004-[['Milk Tea with 2 Toppings', '25', 2], ['Peach Bigsize Tea', '22', 1]]
+0000005-[['Brown Sugar Pearl Super Sundae', '25', 1], ['Roosted Pearl Milk Tea', '25', 2], ['Milk Tea with 2 Toppings', '25', 3]]
+0000006-[['Mango Super Sundae', '25', 2], ['Aloe Super Sundae', '25', 3], ['Milk Tea with 2 Toppings', '25', 3]]

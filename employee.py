@@ -23,8 +23,28 @@ class Employee_Management:
             employ = Employee(employ_id, employ__name, employ_position)
             self.tree.root = self.tree.add(employ, self.tree.root)
     
+    def check_valid_id(self, id):
+        if id == 'q' or id == 'Q':
+            return id
+        try:
+            if int(id) > 0:
+                return int(id)
+            else:
+                print("ID INVALID PLEASE ENTER AGAIN")
+                return
+        except:
+            print("ID INVALID PLEASE ENTER AGAIN")
+            return 
+    
     def add_new_employ(self):
-        new_employ_id = input("Please enter employee id: ")
+        new_employ_id = input("Please enter employee id (press 'q' to quit): ")
+        
+        while self.check_valid_id(new_employ_id) == None:
+            new_employ_id = input("Please enter employee id (press 'q' to quit): ")
+        
+        if new_employ_id == 'q' or new_employ_id == "Q":
+            return
+        
         if self.tree.find(int(new_employ_id)):
             print("ID is already existed")
             return
@@ -42,24 +62,53 @@ class Employee_Management:
     def modify_employ(self):
         self.show_employ()
         print()
-        employ_id = input("Please enter employee id you want to modify: ")
+        employ_id = input("Please enter employee id you want to modify (press 'q' to quit): ")
+        
+        while self.check_valid_id(employ_id) == None:
+            employ_id = input("Please enter employee id you want to modify (press 'q' to quit): ")
+        
+        if employ_id == 'q' or employ_id == "Q":
+            return
+        
         print()
         employ = self.tree.find(int(employ_id))
         
         if employ:
-            print("Current Name:", employ.data.name)
-            print()
-            change_name = input("Do you want to modify the name (y/n)? ")
-            print()
-            if change_name.lower() == 'y':
-                employ.data.name = input("Please enter a new name: ")
+            m = input("Please enter what field you want to modify (name, position): ")
+            f = m.split(', ')
+            while f != ['name'] and f != ['position'] and f != ['name', 'position']:
+                m = input("Please enter what field you want to modify (name, position): ")
+                f = m.split(', ')
             
-            print("Current Position:", employ.data.position)
+            if len(f) == 2:
+                change = input("Please enter new name or position (name, position): ")
+                c = change.split(', ')
+                while len(c) != 2:
+                    print("Please enter 2 argument!")
+                    change = input("Please enter new name or position (name, position): ")
+                    c = change.split(', ')
+                    
+                employ.data.name = c[0]
+                employ.data.position = c[1]
+            elif f == ['name']:
+                change = input("Please enter new name or price (name, price): ")
+                c = change.split(", ")
+                while len(c) != 1:
+                    print("Please enter 1 argument")
+                    change = input("Please enter new name or price (name, price): ")
+                    c = change.split(", ")
+                    
+                employ.data.name = change
+            else:
+                change = input("Please enter new name or price (name, price): ")
+                c = change.split(", ")
+                while len(c) != 1:
+                    print("Please enter 1 argument")
+                    change = input("Please enter new name or price (name, price): ")
+                    c = change.split(", ")
+                employ.data.position = change
             print()
-            change_position = input("Do you want to modify the position (y/n)? ")
-            if change_position.lower() == 'y':
-                employ.data.position = input("Please enter a new position: ")
-                print()
+            print("Employee modify successfully!!!")
             
             # Modify employee in the text file
             file_path = 'employee_information.txt'

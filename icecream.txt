@@ -17,7 +17,7 @@
 17-Raspberry Tea-22
 18-Creamy Mango Boba-30
 19-Aloe Lemon Tea-17
-20-Original Earl Grey Tea-15
+20-Original Earl Grey Tea-20
 21-Peach Bigsize Tea-22
 22-Lemon Earl Grey Tea-15
 23-Four seasons Peach Tea-20
@@ -27,3 +27,5 @@
 27-Milk Tea with 3 Toppings-25
 28-Milk Tea with 2 Toppings-25
 29-Milk Tea with 2 Toppings-25
+30-Trang Tien-10
+31-chan chau-10
